@@ -1,0 +1,11 @@
+[
+  {
+    "title": "示例照片",
+    "category": "默认分类",
+    "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80",
+    "thumb": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80",
+    "desc": "这是一张示例照片。上线后可以在管理后台删除或替换。",
+    "date": "2026-04-26",
+    "featured": true
+  }
+]
