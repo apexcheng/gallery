@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gallery</title>
+  <meta name="description" content="A lightweight photo gallery powered by GitHub Pages and Decap CMS." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav">
+      <a class="brand" href="./">Gallery</a>
+      <a class="admin-link" href="admin/">管理照片</a>
+    </nav>
+    <section class="hero-content">
+      <p class="eyebrow">Static Photo Gallery</p>
+      <h1>记录照片，轻量展示。</h1>
+      <p class="subtitle">基于 GitHub Pages + Decap CMS 的静态相册，适合照片不多、需要简单管理后台的个人图片站。</p>
+    </section>
+  </header>
+
+  <main class="container">
+    <section class="toolbar" aria-label="相册工具栏">
+      <input id="searchInput" type="search" placeholder="搜索标题、分类、描述..." autocomplete="off" />
+      <div id="categoryFilters" class="filters"></div>
+    </section>
+
+    <section id="galleryGrid" class="grid" aria-live="polite"></section>
+    <p id="emptyState" class="empty" hidden>暂无匹配照片。</p>
+  </main>
+
+  <dialog id="photoDialog" class="dialog">
+    <button id="closeDialog" class="dialog-close" aria-label="关闭">×</button>
+    <img id="dialogImage" alt="" />
+    <div class="dialog-body">
+      <h2 id="dialogTitle"></h2>
+      <p id="dialogDesc"></p>
+      <p id="dialogMeta"></p>
+    </div>
+  </dialog>
+
+  <footer class="footer">
+    <p>Powered by GitHub Pages + Decap CMS</p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
