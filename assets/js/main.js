@@ -110,8 +110,8 @@ async function loadPhotos() {
   try {
     const response = await fetch('data/photos.json', { cache: 'no-store' });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const photos = await response.json();
-    state.photos = Array.isArray(photos) ? photos : [];
+    const data = await response.json();
+    state.photos = Array.isArray(data) ? data : (data.photos || []);
     renderFilters();
     renderGallery();
   } catch (error) {
