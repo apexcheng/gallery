@@ -2,8 +2,6 @@ backend:
   name: github
   repo: apexcheng/gallery
   branch: main
-  # GitHub Pages 不能直接处理 GitHub OAuth。
-  # 接入 OAuth Proxy 后，取消下面两行注释并替换域名。
   base_url: https://gallery.1677880403a.workers.dev
   auth_endpoint: auth
 
@@ -37,12 +35,7 @@ collections:
                 name: "image"
                 widget: "image"
                 allow_multiple: false
-              - label: "缩略图"
-                name: "thumb"
-                widget: "image"
-                allow_multiple: false
-                required: false
-                hint: "不填也可以，前台会使用原图。"
+                hint: "只上传原图即可。保存后 GitHub Actions 会自动生成压缩缩略图。"
               - label: "描述"
                 name: "desc"
                 widget: "text"
