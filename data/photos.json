@@ -14,7 +14,7 @@
       "featured": true,
       "title": "测试",
       "image": "/gallery/assets/images/uploads/lalpd2exipll1uhnbobnboy_1254_1254.png",
-      "thumb": "",
+      "thumb": "/gallery/assets/images/thumbs/lalpd2exipll1uhnbobnboy_1254_1254.png",
       "desc": "我的豆包"
     },
     {
@@ -22,7 +22,8 @@
       "featured": true,
       "title": "测试2",
       "image": "/gallery/assets/images/uploads/拾光_彼岸图网_32656a0163b83f05.jpg",
-      "date": "2026-05-03"
+      "date": "2026-05-03",
+      "thumb": "/gallery/assets/images/thumbs/_-_32656a0163b83f05.jpg"
     }
   ]
 }
