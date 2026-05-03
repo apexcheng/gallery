@@ -10,6 +10,7 @@
 - 图片详情预览
 - Decap CMS 管理后台：`/admin/`
 - 图片和数据都存放在 GitHub 仓库中
+- 上传原图后，GitHub Actions 自动生成压缩缩略图
 
 ## 推荐 GitHub Pages 设置
 
@@ -43,36 +44,43 @@ https://apexcheng.github.io/gallery/admin/
 
 注意：Decap CMS 使用 GitHub 后端时，需要 OAuth 鉴权服务。GitHub Pages 本身只能托管静态文件，不能直接提供 OAuth 服务。
 
-推荐二选一：
+当前 `admin/config.yml` 已按 GitHub 后端和 Cloudflare Worker OAuth Proxy 配置。
 
-1. 使用 Netlify Identity + Git Gateway 只做后台鉴权，前台仍然放 GitHub Pages。
-2. 自建 Decap GitHub OAuth Proxy，例如 Cloudflare Worker / Vercel / Netlify Function。
+## 添加照片
 
-当前 `admin/config.yml` 已按 GitHub 后端预配置，如使用 OAuth Proxy，需要补充：
+通过 Decap CMS 后台添加照片时，只需要填写：
 
-```yml
-backend:
-  name: github
-  repo: apexcheng/gallery
-  branch: main
-  base_url: https://你的-oauth-proxy域名
-  auth_endpoint: auth
+```text
+标题
+分类
+图片
+描述
+日期
+是否精选
 ```
+
+不需要手动上传缩略图。
+
+保存发布后，GitHub Actions 会自动：
+
+```text
+读取 data/photos.json
+找到没有 thumb 的本地上传图片
+生成压缩缩略图到 assets/images/thumbs/
+把 thumb 自动回填到 data/photos.json
+提交 Generate compressed thumbnails
+```
+
+前台卡片会优先使用 `thumb`，详情大图继续使用原图 `image`。
 
 ## 内容结构
 
 ```text
-/data/photos.json       # 相册数据
-/assets/images/         # 图片目录
-/admin/                 # Decap CMS 管理后台
-```
-
-## 添加照片
-
-通过 Decap CMS 后台添加，或手动编辑：
-
-```text
-data/photos.json
+/data/photos.json              # 相册数据
+/assets/images/uploads/        # 原图上传目录
+/assets/images/thumbs/         # 自动生成的压缩缩略图
+/admin/                        # Decap CMS 管理后台
+/scripts/generate_thumbnails.py # 缩略图生成脚本
 ```
 
 字段示例：
@@ -81,8 +89,8 @@ data/photos.json
 {
   "title": "贵州风景",
   "category": "travel",
-  "image": "/gallery/assets/images/sample-1.jpg",
-  "thumb": "/gallery/assets/images/sample-1.jpg",
+  "image": "/gallery/assets/images/uploads/sample.jpg",
+  "thumb": "/gallery/assets/images/thumbs/sample.jpg",
   "desc": "旅行照片",
   "date": "2026-04-26",
   "featured": true
