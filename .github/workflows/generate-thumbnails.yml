@@ -1,0 +1,41 @@
+name: Generate thumbnails
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "data/photos.json"
+      - "assets/images/uploads/**"
+      - "scripts/generate_thumbnails.py"
+      - ".github/workflows/generate-thumbnails.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-thumbnails:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-actions[bot]'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate thumbnails
+        run: python scripts/generate_thumbnails.py
+
+      - name: Commit generated thumbnails
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Generate compressed thumbnails"
+          file_pattern: "data/photos.json assets/images/thumbs/*"
