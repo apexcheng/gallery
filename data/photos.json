@@ -8,6 +8,14 @@
       "desc": "这是一张示例照片。上线后可以在管理后台删除或替换。",
       "date": "2026-04-26",
       "featured": true
+    },
+    {
+      "category": "默认分类",
+      "featured": true,
+      "title": "测试",
+      "image": "/gallery/assets/images/uploads/lalpd2exipll1uhnbobnboy_1254_1254.png",
+      "thumb": "",
+      "desc": "我的豆包"
     }
   ]
 }
