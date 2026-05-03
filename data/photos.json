@@ -21,9 +21,16 @@
       "category": "分类2",
       "featured": true,
       "title": "测试2",
-      "image": "/gallery/assets/images/uploads/拾光_彼岸图网_32656a0163b83f05.jpg",
+      "image": "/gallery/assets/images/uploads/拾光_彼岸图网_31831159e1a10433.jpg",
       "date": "2026-05-03",
       "thumb": "/gallery/assets/images/thumbs/_-_32656a0163b83f05.jpg"
+    },
+    {
+      "category": "默认分类",
+      "featured": true,
+      "title": "压缩图测试",
+      "image": "/gallery/assets/images/uploads/拾光_彼岸图网_32656a0163b83f05.jpg",
+      "date": "2026-05-03"
     }
   ]
 }
