@@ -16,6 +16,13 @@
       "image": "/gallery/assets/images/uploads/lalpd2exipll1uhnbobnboy_1254_1254.png",
       "thumb": "",
       "desc": "我的豆包"
+    },
+    {
+      "category": "分类2",
+      "featured": true,
+      "title": "测试2",
+      "image": "/gallery/assets/images/uploads/拾光_彼岸图网_32656a0163b83f05.jpg",
+      "date": "2026-05-03"
     }
   ]
 }
