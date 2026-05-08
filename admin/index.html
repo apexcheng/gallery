@@ -2,8 +2,81 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Gallery Admin</title>
+  <style>
+    @media (max-width: 768px) {
+      html,
+      body {
+        width: 100%;
+        min-width: 0;
+        overflow-x: hidden;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      #nc-root,
+      #nc-root * {
+        max-width: 100vw;
+      }
+
+      #nc-root input,
+      #nc-root textarea,
+      #nc-root select,
+      #nc-root button {
+        font-size: 16px;
+      }
+
+      #nc-root img,
+      #nc-root video,
+      #nc-root canvas,
+      #nc-root svg {
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* 手机端把后台的左右编辑/预览结构压成单列，电脑端保持 Decap CMS 原样 */
+      #nc-root main,
+      #nc-root form,
+      #nc-root section,
+      #nc-root article,
+      #nc-root [class*="Container"],
+      #nc-root [class*="Wrapper"],
+      #nc-root [class*="Pane"],
+      #nc-root [class*="Panel"],
+      #nc-root [class*="Sidebar"],
+      #nc-root [class*="Editor"],
+      #nc-root [class*="Preview"],
+      #nc-root [class*="Control"] {
+        min-width: 0 !important;
+      }
+
+      #nc-root [class*="Editor"],
+      #nc-root [class*="Preview"],
+      #nc-root [class*="ControlPane"],
+      #nc-root [class*="PreviewPane"] {
+        width: 100% !important;
+      }
+
+      #nc-root [class*="PreviewPane"] {
+        display: none !important;
+      }
+
+      #nc-root [class*="Toolbar"],
+      #nc-root [class*="Actions"],
+      #nc-root [class*="Buttons"] {
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+      }
+    }
+  </style>
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
