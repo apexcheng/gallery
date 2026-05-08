@@ -1,6 +1,15 @@
 {
   "photos": [
     {
+      "title": "未命名照片",
+      "category": "默认分类",
+      "image": "/gallery/assets/images/uploads/1778258586943-73398F2B-D33D-4B5C-8A26-D7F6E2CE790F.png",
+      "desc": "",
+      "featured": false,
+      "date": "2026-05-08",
+      "thumb": "/gallery/assets/images/uploads/1778258586943-73398F2B-D33D-4B5C-8A26-D7F6E2CE790F.png"
+    },
+    {
       "title": "黄撑1",
       "category": "默认分类",
       "image": "/gallery/assets/images/uploads/1778258478779-3699AF95-67D2-4FBF-B048-FA209F652A18.png",
