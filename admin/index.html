@@ -7,13 +7,13 @@
   <style>
     :root {
       --admin-bg: #f4f7fb;
-      --admin-surface: rgba(255, 255, 255, 0.88);
-      --admin-surface-solid: #ffffff;
+      --admin-surface: rgba(255, 255, 255, 0.90);
+      --admin-surface-strong: #ffffff;
       --admin-border: rgba(15, 23, 42, 0.10);
       --admin-text: #0f172a;
       --admin-muted: #64748b;
       --admin-primary: #2563eb;
-      --admin-primary-soft: rgba(37, 99, 235, 0.12);
+      --admin-primary-soft: rgba(37, 99, 235, 0.11);
       --admin-radius: 22px;
       --admin-shadow: 0 22px 60px rgba(15, 23, 42, 0.10);
     }
@@ -26,31 +26,39 @@
     body {
       min-height: 100%;
       margin: 0;
+      overflow-x: hidden;
       background:
         radial-gradient(circle at top left, rgba(37, 99, 235, 0.15), transparent 34rem),
         radial-gradient(circle at top right, rgba(14, 165, 233, 0.13), transparent 32rem),
         linear-gradient(180deg, #f8fbff 0%, var(--admin-bg) 100%);
       color: var(--admin-text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       -webkit-text-size-adjust: 100%;
     }
 
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    .admin-page {
+      min-height: 100vh;
     }
 
     .admin-shell {
       position: sticky;
       top: 0;
-      z-index: 9999;
+      z-index: 50;
       display: flex;
       align-items: center;
       gap: 14px;
-      min-height: 70px;
+      min-height: 72px;
       padding: max(12px, env(safe-area-inset-top)) clamp(16px, 3vw, 34px) 12px;
       border-bottom: 1px solid var(--admin-border);
-      background: rgba(248, 251, 255, 0.78);
+      background: rgba(248, 251, 255, 0.80);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
+    }
+
+    .admin-shell__brand,
+    .admin-shell__action {
+      color: inherit;
+      text-decoration: none;
     }
 
     .admin-shell__brand {
@@ -58,8 +66,6 @@
       align-items: center;
       gap: 10px;
       min-width: 0;
-      color: var(--admin-text);
-      text-decoration: none;
     }
 
     .admin-shell__logo {
@@ -95,7 +101,12 @@
       flex: 1 1 auto;
     }
 
-    .admin-shell__pill,
+    .admin-shell__tabs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
     .admin-shell__action {
       display: inline-flex;
       align-items: center;
@@ -107,21 +118,23 @@
       background: var(--admin-surface);
       color: var(--admin-muted);
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 750;
       white-space: nowrap;
-      text-decoration: none;
       box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
     }
 
-    .admin-shell__action {
-      border-color: rgba(37, 99, 235, 0.22);
+    .admin-shell__action--primary {
+      border-color: rgba(37, 99, 235, 0.24);
       background: var(--admin-primary-soft);
       color: var(--admin-primary);
     }
 
-    #nc-root {
-      min-height: calc(100vh - 70px);
+    .admin-workspace {
       padding: 18px clamp(16px, 3vw, 34px) 34px;
+    }
+
+    #nc-root {
+      min-height: calc(100vh - 124px);
       isolation: isolate;
     }
 
@@ -129,7 +142,7 @@
       overflow: hidden;
       border: 1px solid var(--admin-border);
       border-radius: var(--admin-radius);
-      background: rgba(255, 255, 255, 0.72);
+      background: rgba(255, 255, 255, 0.74);
       box-shadow: var(--admin-shadow);
     }
 
@@ -165,16 +178,9 @@
     }
 
     @media (max-width: 768px) {
-      html,
-      body {
-        width: 100%;
-        overflow-x: hidden;
-      }
-
       .admin-shell {
-        align-items: flex-start;
         gap: 10px;
-        min-height: auto;
+        min-height: 58px;
         padding: max(10px, env(safe-area-inset-top)) 12px 10px;
       }
 
@@ -188,21 +194,30 @@
         font-size: 15px;
       }
 
-      .admin-shell__desc,
-      .admin-shell__pill {
+      .admin-shell__desc {
         display: none;
+      }
+
+      .admin-shell__tabs {
+        gap: 6px;
       }
 
       .admin-shell__action {
         min-height: 34px;
-        padding: 0 11px;
+        padding: 0 10px;
         font-size: 12px;
       }
 
-      #nc-root {
-        width: 100%;
-        min-height: calc(100vh - 56px);
+      .admin-shell__action--secondary {
+        display: none;
+      }
+
+      .admin-workspace {
         padding: 10px 10px 18px;
+      }
+
+      #nc-root {
+        min-height: calc(100vh - 78px);
         overflow-x: hidden;
       }
 
@@ -230,6 +245,12 @@
         min-height: 118px;
       }
 
+      #nc-root [data-gallery-mobile-menu="true"] {
+        display: none !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+      }
+
       #nc-root [class*="PreviewPane"],
       #nc-root [class*="EditorPreview"] {
         display: none !important;
@@ -243,12 +264,7 @@
         width: 100% !important;
         min-width: 0 !important;
         max-width: 100% !important;
-      }
-
-      #nc-root [class*="Sidebar"] {
-        width: 100% !important;
-        min-width: 0 !important;
-        max-width: 100% !important;
+        margin-left: 0 !important;
       }
 
       #nc-root [class*="Toolbar"],
@@ -270,7 +286,7 @@
         padding: 0 9px;
       }
 
-      #nc-root {
+      .admin-workspace {
         padding-left: 8px;
         padding-right: 8px;
       }
@@ -278,19 +294,83 @@
   </style>
 </head>
 <body>
-  <header class="admin-shell" aria-label="后台顶部导航">
-    <a class="admin-shell__brand" href="../">
-      <span class="admin-shell__logo">G</span>
-      <span>
-        <span class="admin-shell__title">Gallery Admin</span>
-        <span class="admin-shell__desc">照片内容管理后台</span>
-      </span>
-    </a>
-    <span class="admin-shell__pill">GitHub Pages · Decap CMS</span>
-    <span class="admin-shell__spacer"></span>
-    <a class="admin-shell__action" href="../">查看相册</a>
-  </header>
+  <div class="admin-page">
+    <header class="admin-shell" aria-label="后台顶部导航">
+      <a class="admin-shell__brand" href="../">
+        <span class="admin-shell__logo">G</span>
+        <span>
+          <span class="admin-shell__title">Gallery Admin</span>
+          <span class="admin-shell__desc">照片内容管理后台</span>
+        </span>
+      </a>
+      <span class="admin-shell__spacer"></span>
+      <nav class="admin-shell__tabs" aria-label="后台快捷操作">
+        <a class="admin-shell__action admin-shell__action--primary" href="#/collections/data/entries/photos">管理照片</a>
+        <a class="admin-shell__action admin-shell__action--secondary" href="../">查看相册</a>
+      </nav>
+    </header>
 
+    <main class="admin-workspace">
+      <div id="nc-root"></div>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      var entryHash = "#/collections/data/entries/photos";
+      var authPattern = /access_token|invite_token|confirmation_token|recovery_token|error=/;
+
+      function shouldRedirect(hash) {
+        if (authPattern.test(hash)) {
+          return false;
+        }
+
+        return hash === "" ||
+          hash === "#" ||
+          hash === "#/" ||
+          hash === "#/collections" ||
+          hash === "#/collections/data";
+      }
+
+      if (shouldRedirect(window.location.hash)) {
+        window.location.replace(
+          window.location.pathname + window.location.search + entryHash
+        );
+      }
+
+      function markMobileCollectionMenu() {
+        if (!window.matchMedia("(max-width: 768px)").matches) {
+          return;
+        }
+
+        var nodes = document.querySelectorAll(
+          "#nc-root aside, #nc-root nav, #nc-root [class*='Sidebar'], #nc-root [class*='Collection']"
+        );
+
+        Array.prototype.forEach.call(nodes, function (node) {
+          var text = (node.innerText || "").replace(/\s+/g, " ");
+          var looksLikeCollectionMenu =
+            text.indexOf("集合") !== -1 &&
+            text.indexOf("查找所有") !== -1 &&
+            text.indexOf("相册数据") !== -1;
+
+          if (looksLikeCollectionMenu) {
+            node.setAttribute("data-gallery-mobile-menu", "true");
+          }
+        });
+      }
+
+      var observer = new MutationObserver(markMobileCollectionMenu);
+      observer.observe(document.documentElement, {
+        childList: true,
+        subtree: true
+      });
+
+      window.addEventListener("resize", markMobileCollectionMenu);
+      window.addEventListener("hashchange", markMobileCollectionMenu);
+      document.addEventListener("DOMContentLoaded", markMobileCollectionMenu);
+    })();
+  </script>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
 </html>
