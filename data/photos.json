@@ -1,8 +1,8 @@
 {
   "photos": [
     {
-      "title": "未命名照片",
-      "category": "默认分类",
+      "title": "",
+      "category": "ApexC",
       "image": "/gallery/assets/images/uploads/1778258586943-73398F2B-D33D-4B5C-8A26-D7F6E2CE790F.png",
       "desc": "",
       "featured": false,
@@ -10,8 +10,8 @@
       "thumb": "/gallery/assets/images/uploads/1778258586943-73398F2B-D33D-4B5C-8A26-D7F6E2CE790F.png"
     },
     {
-      "title": "黄撑1",
-      "category": "默认分类",
+      "title": "",
+      "category": "ApexC",
       "image": "/gallery/assets/images/uploads/1778258478779-3699AF95-67D2-4FBF-B048-FA209F652A18.png",
       "desc": "",
       "featured": false,
@@ -28,8 +28,8 @@
       "thumb": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80"
     },
     {
-      "title": "压缩图测试",
-      "category": "默认分类",
+      "title": "",
+      "category": "壁纸",
       "image": "/gallery/assets/images/uploads/拾光_彼岸图网_32656a0163b83f05.jpg",
       "desc": "",
       "featured": true,
